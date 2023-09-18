@@ -3,6 +3,22 @@ const router = require('express').Router()
 // Model import
 const Person = require('../models/Person')
 
+//router.get('/', (req, res) => {
+//    res.json({ message: 'Oi Express!' })
+//})
+
+// Read - Get
+router.get('/', async (req, res) => {
+    try {
+        const people = await Person.find()
+
+        res.status(200).json(people)
+
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+})
+
 // Create - Post
 router.post('/', async (req, res) => {
 
@@ -31,21 +47,11 @@ router.post('/', async (req, res) => {
         res.status(201).json({ message: 'Pessoa inserida com sucesso' })
 
     } catch (error) {
-        res.status(500).json({ error: error })
+        res.status(500).json({ error: error.message })
     }
 })
 
-// Read - Get
-router.get('/'), async (req, res) => {
-    try {
-        const people = await Person.find()
 
-        res.status(200).json(people)
-
-    } catch (error) {
-        res.status(500).json({error: error})
-    }
-}
 
 // Get by id
 router.get('/:id', async (req, res)=> {

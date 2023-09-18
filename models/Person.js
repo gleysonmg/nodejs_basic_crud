@@ -1,10 +1,12 @@
 const mongoose = require('mongoose')
 
-const Person = mongoose.model('Person', {
+var PersonSchema = new mongoose.Schema({
     name: String,
     salary: Number,
-    approved: Boolean,
+    approved: Boolean
 })
 
+var Person = mongoose.model('Person', PersonSchema)
+
 // Export module
-module.export = Person
+module.exports = Person
