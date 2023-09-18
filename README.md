@@ -1,2 +1,3 @@
 # nodejs_basic_crud
-This repository demonstrates a simple CRUD in Node.js with express and mongoose
+
+This repository demonstrates a simple Restful API with Node.js, MongoDB, express and mongoose
