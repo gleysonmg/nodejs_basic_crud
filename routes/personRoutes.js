@@ -4,7 +4,7 @@ const router = require('express').Router()
 const Person = require('../models/Person')
 
 //router.get('/', (req, res) => {
-//    res.json({ message: 'Oi Express!' })
+//    res.json({ message: 'Hello Express!' })
 //})
 
 // Read - Get
@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
 
     //Name validation
     if (!name) {
-        res.status(422).json({error: 'O nome é obrigatório'})
+        res.status(422).json({error: 'Name is mandatory!'})
 
         return
     }
@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
         await Person.create(person)
 
         //Data creation success - HTTP Status 201 (Created - successful request)
-        res.status(201).json({ message: 'Pessoa inserida com sucesso' })
+        res.status(201).json({ message: 'Person successfully registered!' })
 
     } catch (error) {
         res.status(500).json({ error: error.message })
@@ -61,7 +61,7 @@ router.get('/:id', async (req, res)=> {
         const person = await Person.findOne({_id: id})
 
         if (!person) {
-            res.status(422).json({message: "pessoa não encontrada"})
+            res.status(422).json({message: "Person not found!"})
 
             return
         }
@@ -89,7 +89,7 @@ router.patch('/:id', async (req, res) => {
         const updatedPerson = await Person.updateOne({_id: id }, person)
 
         if(updatedPerson.matchedCount === 0) {
-            res.status(422).json({ message: 'Person não atualizada' })
+            res.status(422).json({ message: 'An error occurred during the update!' })
 
             return
         }
@@ -99,7 +99,6 @@ router.patch('/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({error: error})
     }
-
 })
 
 //Delete
@@ -110,7 +109,7 @@ router.delete('/:id', async (req, res) => {
     const person = await Person.findOne({ _id: id})
 
     if (!person) {
-        res.status(422).json({ message: 'O usuário não foi encontrado' })
+        res.status(422).json({ message: 'Person not found!' })
 
         return
     }
@@ -118,13 +117,11 @@ router.delete('/:id', async (req, res) => {
     try {
         await Person.deleteOne({ _id: id })
 
-        res.status(200).json({ message: 'usuário deletado com sucesso'})
+        res.status(200).json({ message: 'Person successfully deleted!'})
 
     } catch (error) {
         res.status(500).json({ error: error })
     }
-
-
 })
 
 module.exports = router

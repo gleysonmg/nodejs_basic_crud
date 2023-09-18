@@ -1,11 +1,11 @@
-//Configuração Inicial
+//Initial configuration
 require('dotenv').config()
 const express = require('express')
 const app = express()
 
 const mongoose = require('mongoose')
 
-// Leitura de Json (middleware)
+// Json (middleware)
 app.use(
     express.urlencoded({
         extended: true,
@@ -14,7 +14,7 @@ app.use(
 
 app.use(express.json())
 
-// Rotas da API
+// Routes
 const personRoutes = require('./routes/personRoutes')
 
 app.use('/person', personRoutes)
@@ -31,7 +31,7 @@ mongoose
 
 //Connection successful
 .then(() => {
-    console.log("App conectada ao MongoDB")
+    console.log("App connected to MongoDB")
     app.listen(3000)
 })
 
