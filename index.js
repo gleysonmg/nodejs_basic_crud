@@ -22,7 +22,8 @@ app.use('/person', personRoutes)
 // Connection data (user, password, connection string)
 const user = process.env.DB_USER
 const password = process.env.DB_PASSWORD
-const CONNECTION_STRING = `mongodb+srv://${ user }:${ password }@cluster0.hiixt7o.mongodb.net/apinodejs`
+const addressMongo = process.env.ADDRESS_MONGO
+const CONNECTION_STRING = `mongodb+srv://${ user }:${ password }${ addressMongo }`
 
 //Connect to MongoDB
 mongoose

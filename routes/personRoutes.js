@@ -51,8 +51,6 @@ router.post('/', async (req, res) => {
     }
 })
 
-
-
 // Get by id
 router.get('/:id', async (req, res)=> {
     //console.log(req)
